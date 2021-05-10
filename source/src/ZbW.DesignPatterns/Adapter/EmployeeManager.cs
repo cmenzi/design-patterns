@@ -27,7 +27,10 @@ namespace ZbW.DesignPatterns.Adapter
         public decimal PaySalaries()
         {
             var total = _employees.Sum(e => e.GetSalary());
+
+            //// Console should be an interface or use ILogger
             Console.WriteLine(total);
+
             return total;
         }
     }
