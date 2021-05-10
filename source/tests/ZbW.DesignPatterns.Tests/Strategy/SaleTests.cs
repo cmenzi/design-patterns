@@ -73,6 +73,19 @@
             result.Should().Be(80);
         }
 
+        [Fact]
+        public void NoDiscount_WhenNoDiscount_ReturnSameAmount()
+        {
+            // Arrange
+            var noDiscountStrategy = new NullDiscountStrategy();
+            
+            // Act
+            var result = new Sale(100m, noDiscountStrategy).GetTotal();
+
+            // Assert
+            result.Should().Be(100m);
+        }
+
         public class BeforeLunchTimeSource : ITimeSource
         {
             public DateTime Now => throw new NotImplementedException();

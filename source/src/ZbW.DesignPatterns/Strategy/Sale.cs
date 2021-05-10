@@ -7,7 +7,7 @@
         public Sale(decimal amount, IPricingStrategy pricingStrategy)
         {
             Amount = amount;
-        
+
             _pricingStrategy = pricingStrategy;
         }
 
