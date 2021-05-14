@@ -5,9 +5,12 @@
     using Moq;
 
     using System;
+    using System.IO;
+    using System.Linq;
 
     using Xunit;
 
+    using ZbW.DesignPatterns.Composite;
     using ZbW.DesignPatterns.Strategy;
 
     public class SaleTests
@@ -84,6 +87,28 @@
 
             // Assert
             result.Should().Be(100m);
+        }
+
+        [Fact]
+        public void Composite_PricingStrategy()
+        {
+            // Arrange
+            var strategy = new BestForStorePricingStrategy();
+            strategy.Add(new AbsoluteDiscountOverThresholdStrategy(100, 20));
+            strategy.Add(new DoubleDiscountAfterLunchStrategy(new TimeSource(), 20));
+
+            
+            var strategy2 = new BestForStorePricingStrategy();
+            strategy2.Add(new AbsoluteDiscountOverThresholdStrategy(100, 50));
+            strategy2.Add(new DoubleDiscountAfterLunchStrategy(new TimeSource(), 10));
+
+            strategy.Add(strategy2);
+
+            // Act
+            var result = new Sale(100m, strategy).GetTotal();
+
+            // Assert
+            result.Should().Be(80m);
         }
 
         public class BeforeLunchTimeSource : ITimeSource

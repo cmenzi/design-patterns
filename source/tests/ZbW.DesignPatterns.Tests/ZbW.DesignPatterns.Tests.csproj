@@ -25,4 +25,8 @@
     <ProjectReference Include="..\..\src\ZbW.DesignPatterns\ZbW.DesignPatterns.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Singleton\Tpl\" />
+  </ItemGroup>
+
 </Project>
