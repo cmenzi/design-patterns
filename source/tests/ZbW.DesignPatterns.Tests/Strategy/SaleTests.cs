@@ -11,6 +11,7 @@
     using Xunit;
 
     using ZbW.DesignPatterns.Composite;
+    using ZbW.DesignPatterns.Decorator;
     using ZbW.DesignPatterns.Strategy;
 
     public class SaleTests
@@ -106,6 +107,29 @@
 
             // Act
             var result = new Sale(100m, strategy).GetTotal();
+
+            // Assert
+            result.Should().Be(80m);
+        }
+
+        [Fact]
+        public void Decorator_PricingStrategy()
+        {
+            // Arrange
+            var strategy = new BestForStorePricingStrategy();
+            strategy.Add(new AbsoluteDiscountOverThresholdStrategy(100, 20));
+            strategy.Add(new DoubleDiscountAfterLunchStrategy(new TimeSource(), 20));
+
+            var strategy2 = new BestForStorePricingStrategy();
+            strategy2.Add(new LoggingPricingStrategyDecorator(new AbsoluteDiscountOverThresholdStrategy(100, 50)));
+            strategy2.Add(new DoubleDiscountAfterLunchStrategy(new TimeSource(), 10));
+
+            strategy.Add(strategy2);
+
+            var decorator = new LoggingPricingStrategyDecorator(strategy);
+
+            // Act
+            var result = new Sale(100m, decorator).GetTotal();
 
             // Assert
             result.Should().Be(80m);
