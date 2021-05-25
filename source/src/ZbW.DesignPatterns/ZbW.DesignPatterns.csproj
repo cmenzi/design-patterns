@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <StartupObject>ZbW.DesignPatterns.Factory.Program</StartupObject>
+    <StartupObject>ZbW.DesignPatterns.Iterator.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
