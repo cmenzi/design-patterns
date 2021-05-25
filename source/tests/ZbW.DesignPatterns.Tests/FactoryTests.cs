@@ -10,7 +10,7 @@
 
     using ZbW.DesignPatterns.Factory;
 
-    public class InterpreterTests
+    public class FactoryTests
     {
         [Fact]
         public void Reflection_Factory_Demo()
