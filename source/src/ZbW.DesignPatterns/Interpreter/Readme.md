@@ -1,19 +1,16 @@
-#Interpreter Design pattern
-Interprets the instructions written in a language grammar or notations. 
-This pattern involves implementing an expression interface which tells to interpret a particular context. 
+# Interpreter
 
-##Client
-This is the class that builds the abstract syntax tree for a set of instructions in the given grammar. 
-This tree builds with the help of instances of NonTerminalExpression and TerminalExpression classes.
+## Problem
 
-##Context
-This is a class that contains information (input and output), which is used by the Interpreter.
+Das Interpretermuster definiert eine Repräsentation für die Grammatik einer Sprache und die Möglichkeit, Sätze dieser Sprache zu interpretieren.
+Z.B. Römische Zahlen, Datum etc.
 
-##Expression
-This is an interface that defines the Interpret operation, which must be implemented by each subclass.
+## Lösung
 
-##NonTerminal
-This is a class that implements the Expression. This can have other instances of Expression.
+Ein Interface 'AbstractExpression' schreibt eine Methode 'Evaluate()' vor, die von allen abgeleiteten, konkreten Klassen implementiert werden muss und die entsprechende Expression auswertet.
+Für den zu interpretierenden Satz wird gemäss der Grammatik ein Syntaxbaum aus Nichtterminal- und Terminalausdrücken aufgebaut. Dies kann durch einen externen Parser oder den Client selbst geschehen. 
 
-##Terminal
-This is a class that implements the Expression.
+## Was macht das Pattern
+
+Interpretiert die Anweisungen in einer Sprachgrammatik oder in Notationen.
+Dieses Pattern beinhaltet die Implementierung einer Ausdrucksschnittstelle, die angibt, einen bestimmten Kontext zu interpretieren.
