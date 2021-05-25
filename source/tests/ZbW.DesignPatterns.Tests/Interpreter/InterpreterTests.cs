@@ -53,27 +53,5 @@ namespace ZbW.DesignPatterns.InterpreterTests
             // Assert
             context.expression.Should().Be("31");
         }
-
-        [Fact]
-        public void Evaluate_Year_Month_Day_2020_12_31()
-        {
-            Context context = new Context(new DateTime(2020, 12, 31));
-            AbstractExpression expression;
-
-
-            context.expression = "YYYY";
-            expression = new YearExpression();
-            expression.Evaluate(context);
-
-            context.expression = "MM";
-            expression = new MonthExpression();
-            expression.Evaluate(context);
-
-            context.expression = "DD";
-            expression = new DayExpression();
-            expression.Evaluate(context);
-
-            context.expression.Should().Be("20201231");
-        }
     }
 }
