@@ -10,14 +10,18 @@ namespace ZbW.DesignPatterns.Proxy
     {
         private WaiterAccount _waiterAccount;
 
-        public ProxyWaiterAccount(WaiterAccount waiterAccount)
+        public ProxyWaiterAccount(string user, string password)
         {
-            this._waiterAccount.ExecuteOrder();
+            var acc = new WaiterAccount(user, password);
         }
 
         public void ExecuteOrder()
         {
-            throw new NotImplementedException();
+            if (this.CheckAccess())
+            {
+                this._waiterAccount.ExecuteOrder();
+                this.LogAccess();
+            }
         }
 
         public bool CheckAccess()
