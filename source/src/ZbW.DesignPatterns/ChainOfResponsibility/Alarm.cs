@@ -6,31 +6,22 @@ using System.Threading.Tasks;
 
 namespace ZbW.DesignPatterns.ChainOfResponsibility
 {
-    public abstract class Alarm
+    public abstract class Alarm : IAlarm
     {
-        protected Alarm _next {  get; set; }
+        private IAlarm _next {  get; set; }
 
-        public Alarm SetNext(Alarm nextAlarm)
-        {
-            Alarm lastAlarm = this;
-            while (lastAlarm._next != null)
-            {
-                lastAlarm = lastAlarm._next;
-            }
-            lastAlarm._next = nextAlarm;
-            return this;
-        }
-
-        public string ToDo(string message)
+        public virtual string Escalate(string message)
         {
             if (_next != null)
-            {
-                return _next.ToDo(message);
-            }
-
-            return GetToDo(message + Environment.NewLine);
+                return _next.Escalate(message);
+            else
+                return null;
         }
 
-        protected abstract string GetToDo(string message);
+        public IAlarm SetNext(IAlarm nextAlarm)
+        {
+            _next = nextAlarm;
+            return _next;
+        }
     }
 }

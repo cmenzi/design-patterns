@@ -8,9 +8,12 @@ namespace ZbW.DesignPatterns.ChainOfResponsibility
 {
     public class LightAlarm : Alarm
     {
-        protected override string GetToDo(string message)
+        public override string Escalate(string message)
         {
-            return this?._next.ToDo("Lights have done the swirly thing!") ?? message + "Lights have done the swirly thing!";
+            if(message == "LightsOn")
+                return "Lights have done the swirly thing!";
+            else
+                return base.Escalate(message);
         }
     }
 }
