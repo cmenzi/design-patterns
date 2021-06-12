@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZbW.DesignPatterns.Prototype
 {
+    [Serializable]
     public abstract class Prototypes
     {
         public abstract Prototypes ShallowCopy();

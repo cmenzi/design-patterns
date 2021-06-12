@@ -1,5 +1,8 @@
-﻿namespace ZbW.DesignPatterns.Strategy
+﻿using System;
+
+namespace ZbW.DesignPatterns.Strategy
 {
+    [Serializable]
     public class PercentageDiscountStrategy : IPricingStrategy
     {
         private readonly decimal _percentage;

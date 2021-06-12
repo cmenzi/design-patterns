@@ -1,10 +1,17 @@
-﻿using ZbW.DesignPatterns.Prototype;
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
+using ZbW.DesignPatterns.Prototype;
+
+[assembly: InternalsVisibleTo("ZbW.DesignPatterns.Tests")]
 
 namespace ZbW.DesignPatterns.Strategy
 {
+    [Serializable]
     public class Sale : Prototypes
     {
-        private readonly IPricingStrategy _pricingStrategy;
+        internal readonly IPricingStrategy _pricingStrategy;
 
         public Sale(decimal amount, IPricingStrategy pricingStrategy)
         {
@@ -28,13 +35,13 @@ namespace ZbW.DesignPatterns.Strategy
 
         public override Prototypes DeepCopy()
         {
-            // is ShallowCopy() Implemented, then call this.ShallowCopy()
-            Sale _sale = (Sale)this.MemberwiseClone(); // --> I dont need this then
-            // is Readonly (implement in the Constructor)
-            //     --> @Cédric have you a other Implementation Idee for a Interface?
-            // _sale._pricingStrategy = this._pricingStrategy;
-
-            return new Sale(_sale.Amount, this._pricingStrategy);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                var binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(memoryStream, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return (Sale)binaryFormatter.Deserialize(memoryStream);
+            }
         }
     }
 }

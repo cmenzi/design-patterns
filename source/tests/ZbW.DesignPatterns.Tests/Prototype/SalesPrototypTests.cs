@@ -26,28 +26,18 @@ namespace ZbW.DesignPatterns.Tests.Prototype
             Assert.True(!sale.Equals(result));
         }
 
-        [Fact]
-        public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
-        {
-            // Arrange
-            var sale = new Sale(100, new PercentageDiscountStrategy(50));
+        //[Fact]
+        //public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
+        //{
+        //    // Arrange
+        //    var sale = new Sale(100, new PercentageDiscountStrategy(50));
 
-            FieldInfo _pricingStrategyOriginal = typeof(Sale).GetField(
-                                                                "_pricingStrategy",
-                                                                BindingFlags.Instance | BindingFlags.NonPublic);
+        //    // Act
+        //    var result = sale.ShallowCopy();
 
-            var pricingStrategyOriginal = (IPricingStrategy)_pricingStrategyOriginal.GetValue(sale);
-
-            // Act
-            FieldInfo _pricingStrategyShallowCopy = typeof(Sale).GetField(
-                                                                "_pricingStrategy",
-                                                                BindingFlags.Instance | BindingFlags.NonPublic);
-
-            var result = (IPricingStrategy)_pricingStrategyShallowCopy.GetValue(sale);
-
-            // Assert
-            Assert.True(pricingStrategyOriginal.Equals(result));
-        }
+        //    // Assert
+        //    Assert.False(sale._pricingStrategy.Equals(result.));
+        //}
 
         [Fact]
         public void GetSale_WhenDoDeepCopy_ThenPricingStrategyReferanceChange()
@@ -55,22 +45,11 @@ namespace ZbW.DesignPatterns.Tests.Prototype
             // Arrange
             var sale = new Sale(100, new PercentageDiscountStrategy(50));
 
-            FieldInfo _pricingStrategyOriginal = typeof(Sale).GetField(
-                                                                "_pricingStrategy",
-                                                            BindingFlags.Instance | BindingFlags.NonPublic);
-
-            var pricingStrategyOriginal = (IPricingStrategy)_pricingStrategyOriginal.GetValue(sale);
-
             // Act
-            var _deepCopy = (Sale)sale.DeepCopy();
-            FieldInfo _pricingStrategyDeepCopy = typeof(Sale).GetField(
-                                                            "_pricingStrategy",
-                                                            BindingFlags.Instance | BindingFlags.NonPublic);
-
-            var result = (IPricingStrategy)_pricingStrategyDeepCopy.GetValue(_deepCopy);
+            var deepCopySale = (Sale)sale.DeepCopy();
 
             // Assert
-            Assert.True(pricingStrategyOriginal.Equals(result));
+            Assert.False(sale._pricingStrategy.Equals(deepCopySale._pricingStrategy));
         }
     }
 }
