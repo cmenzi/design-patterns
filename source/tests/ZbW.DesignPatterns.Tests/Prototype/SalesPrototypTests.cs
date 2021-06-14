@@ -14,7 +14,7 @@ namespace ZbW.DesignPatterns.Tests.Prototype
     public class SalesPrototypTests
     {
         [Fact]
-        public void GetSale_WhenDoShallowCopy_ThenChangeTheObjectReferance()
+        public void GetSale_WhenDoShallowCopy_ThenChangeTheObjectReference()
         {
             // Arrange
             var sale = new Sale(100, new PercentageDiscountStrategy(50));
@@ -27,7 +27,7 @@ namespace ZbW.DesignPatterns.Tests.Prototype
         }
 
         //[Fact]
-        //public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
+        //public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReference()
         //{
         //    // Arrange
         //    var sale = new Sale(100, new PercentageDiscountStrategy(50));
@@ -40,7 +40,7 @@ namespace ZbW.DesignPatterns.Tests.Prototype
         //}
 
         [Fact]
-        public void GetSale_WhenDoDeepCopy_ThenPricingStrategyReferanceChange()
+        public void GetSale_WhenDoDeepCopy_ThenPricingStrategyReferenceChange()
         {
             // Arrange
             var sale = new Sale(100, new PercentageDiscountStrategy(50));
