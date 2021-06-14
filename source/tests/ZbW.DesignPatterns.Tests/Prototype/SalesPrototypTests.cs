@@ -11,6 +11,7 @@ using ZbW.DesignPatterns.Strategy;
 
 namespace ZbW.DesignPatterns.Tests.Prototype
 {
+
     public class SalesPrototypTests
     {
         [Fact]
@@ -26,18 +27,18 @@ namespace ZbW.DesignPatterns.Tests.Prototype
             Assert.True(!sale.Equals(result));
         }
 
-        //[Fact]
-        //public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
-        //{
-        //    // Arrange
-        //    var sale = new Sale(100, new PercentageDiscountStrategy(50));
+        [Fact]
+        public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
+        {
+            // Arrange
+            var sale = new Sale(100, new PercentageDiscountStrategy(50));
 
-        //    // Act
-        //    var result = sale.ShallowCopy();
+            // Act
+            var result = (Sale)sale.ShallowCopy();
 
-        //    // Assert
-        //    Assert.False(sale._pricingStrategy.Equals(result.));
-        //}
+            // Assert
+            Assert.True(sale._pricingStrategy.Equals(result._pricingStrategy));
+        }
 
         [Fact]
         public void GetSale_WhenDoDeepCopy_ThenPricingStrategyReferanceChange()
@@ -46,10 +47,10 @@ namespace ZbW.DesignPatterns.Tests.Prototype
             var sale = new Sale(100, new PercentageDiscountStrategy(50));
 
             // Act
-            var deepCopySale = (Sale)sale.DeepCopy();
+            var result = (Sale)sale.DeepCopy();
 
             // Assert
-            Assert.False(sale._pricingStrategy.Equals(deepCopySale._pricingStrategy));
+            Assert.False(sale._pricingStrategy.Equals(result._pricingStrategy));
         }
     }
 }
