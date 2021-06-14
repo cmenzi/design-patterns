@@ -1,3 +1,10 @@
+Problem
+Wie kann man Objekte vor direktem Zugriff schützen?
+
+Lösung
+Für das "reale" Objekt wird ein Stellvertreter definiert, welcher Erstellung und Zugriff auf dieses echte Objekt regelt.
+
+Definition
 Das Proxy-Pattern gehört zur Kategorie der Strukturmuster und überträgt die Steuerung eines Objektes
 auf ein vorgelagertes Stellvertreterobjekt.
 
