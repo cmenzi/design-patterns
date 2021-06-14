@@ -27,11 +27,11 @@ namespace ZbW.DesignPatterns.Tests.Prototype
             Assert.True(!sale.Equals(result));
         }
 
-        //[Fact]
-        //public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
-        //{
-        //    // Arrange
-        //    var sale = new Sale(100, new PercentageDiscountStrategy(50));
+        [Fact]
+        public void GetSale_WhenDoShallowCopy_ThenPricingStrategyHaveTheSameReferance()
+        {
+            // Arrange
+            var sale = new Sale(100, new PercentageDiscountStrategy(50));
 
             // Act
             var result = (Sale)sale.ShallowCopy();
