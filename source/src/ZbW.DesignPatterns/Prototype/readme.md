@@ -1,4 +1,4 @@
-﻿#### Prototype
+﻿# Prototype
 Beim erstellen eines Prototpyen ist es das Ziel eine
 Kopie des Objektes zu erzeugen ohne dieses sleber mit 
 viel Aufwand selber zu erzeugen. Man unterschiedet bei der
@@ -23,7 +23,7 @@ druchführen ohne das das dies das Original-Obejct beinflusst.
 -	string Name = "Marc";       --> kopie
 -	Object Person = {....}      --> (kopie) neues Object mit neuer Referenz
 
-# Zusatz ICloneable
+### Zusatz ICloneable
 Das Interface ICloneable wurd grundsätzlich nicht empfohlen,
 weil hinter der Implementierung nicht klar ist welche Implementierung
 genau gemacht wurde. ShallowCopy() und DeepCopy().
