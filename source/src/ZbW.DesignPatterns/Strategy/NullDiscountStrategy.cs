@@ -7,6 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    [Serializable]
     public class NullDiscountStrategy : IPricingStrategy
     {
         public decimal GetDiscount(Sale sale)
