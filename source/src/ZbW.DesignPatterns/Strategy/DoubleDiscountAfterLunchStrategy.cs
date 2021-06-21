@@ -1,5 +1,8 @@
-﻿namespace ZbW.DesignPatterns.Strategy
+﻿using System;
+
+namespace ZbW.DesignPatterns.Strategy
 {
+    [Serializable]
     public class DoubleDiscountAfterLunchStrategy : IPricingStrategy
     {
         private readonly ITimeSource _timeSource;
